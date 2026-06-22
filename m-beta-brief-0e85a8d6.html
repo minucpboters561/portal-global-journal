@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>爱游戏体育 · 知识型导航页</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #faf9f7;
+            color: #1e1e1e;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.65;
+            -webkit-font-smoothing: antialiased;
+            padding: 0 1.5rem;
+        }
+
+        .page {
+            max-width: 740px;
+            margin: 0 auto;
+            padding: 2.5rem 0 4rem 0;
+        }
+
+        /* ---------- 顶部导航 ---------- */
+        .nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.25rem 0 1.5rem 0;
+            border-bottom: 1px solid #eae6e0;
+            margin-bottom: 3.5rem;
+        }
+
+        .nav-brand {
+            font-weight: 500;
+            font-size: 1.1rem;
+            letter-spacing: -0.01em;
+            color: #2c2c2c;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            font-size: 0.9rem;
+        }
+
+        .nav-links a {
+            color: #4d4a47;
+            text-decoration: none;
+            padding: 0.2rem 0;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s;
+        }
+
+        .nav-links a:hover {
+            border-bottom-color: #b0a89b;
+        }
+
+        /* ---------- hero 区 ---------- */
+        .hero {
+            margin-bottom: 4rem;
+        }
+
+        .hero h1 {
+            font-size: 2.2rem;
+            font-weight: 450;
+            letter-spacing: -0.02em;
+            line-height: 1.25;
+            color: #1a1a1a;
+            margin-bottom: 1.2rem;
+        }
+
+        .hero p {
+            font-size: 1.05rem;
+            color: #3e3c39;
+            max-width: 640px;
+        }
+
+        .hero p + p {
+            margin-top: 1.2rem;
+        }
+
+        .hero a {
+            color: #3a6b4f;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            text-decoration-thickness: 1px;
+            text-decoration-color: #c0c9be;
+        }
+
+        .hero a:hover {
+            color: #1f452e;
+            text-decoration-color: #3a6b4f;
+        }
+
+        /* ---------- 三个场景模块 ---------- */
+        .scenes {
+            display: flex;
+            flex-direction: column;
+            gap: 2.8rem;
+            margin-bottom: 4.2rem;
+        }
+
+        .scene-card {
+            background: #ffffff;
+            padding: 1.8rem 2rem;
+            border-radius: 24px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.03), 0 4px 16px rgba(0,0,0,0.02);
+            transition: box-shadow 0.2s;
+        }
+
+        .scene-card:hover {
+            box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+        }
+
+        .scene-card h2 {
+            font-size: 1.4rem;
+            font-weight: 480;
+            letter-spacing: -0.015em;
+            margin-bottom: 0.8rem;
+            color: #1d1d1b;
+        }
+
+        .scene-card p {
+            font-size: 0.98rem;
+            color: #3f3d39;
+            margin-bottom: 0.4rem;
+        }
+
+        .scene-card .note {
+            font-size: 0.88rem;
+            color: #77736c;
+            border-left: 2px solid #d8d1c7;
+            padding-left: 1rem;
+            margin-top: 0.8rem;
+        }
+
+        /* ---------- 常见说明 (FAQ 摘要) ---------- */
+        .faq-section {
+            margin-top: 1.5rem;
+            padding-top: 2.2rem;
+            border-top: 1px solid #e6e1d9;
+        }
+
+        .faq-section h3 {
+            font-size: 1.1rem;
+            font-weight: 470;
+            letter-spacing: -0.01em;
+            color: #22201d;
+            margin-bottom: 1.5rem;
+        }
+
+        .faq-item {
+            margin-bottom: 1.4rem;
+        }
+
+        .faq-item strong {
+            display: block;
+            font-weight: 520;
+            font-size: 0.95rem;
+            color: #2b2a27;
+            margin-bottom: 0.2rem;
+        }
+
+        .faq-item p {
+            font-size: 0.92rem;
+            color: #54514c;
+            line-height: 1.6;
+        }
+
+        .faq-item a {
+            color: #3a6b4f;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+            text-decoration-thickness: 1px;
+            text-decoration-color: #c9cfc1;
+        }
+
+        .faq-item a:hover {
+            color: #1f452e;
+        }
+
+        /* ---------- 尾部 ---------- */
+        .footer-note {
+            margin-top: 4rem;
+            font-size: 0.82rem;
+            color: #8e8981;
+            text-align: center;
+            border-top: 1px solid #ece8e1;
+            padding-top: 2rem;
+        }
+
+        .footer-note a {
+            color: #6b665e;
+            text-decoration: none;
+            border-bottom: 1px dotted #cbc5bb;
+        }
+
+        .footer-note a:hover {
+            color: #3a6b4f;
+            border-bottom-color: #3a6b4f;
+        }
+
+        /* ---------- 响应式 ---------- */
+        @media (max-width: 540px) {
+            .page {
+                padding: 1.5rem 0 3rem 0;
+            }
+
+            .nav {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.6rem;
+                margin-bottom: 2.5rem;
+            }
+
+            .nav-links {
+                gap: 1.2rem;
+                flex-wrap: wrap;
+            }
+
+            .hero h1 {
+                font-size: 1.7rem;
+            }
+
+            .scene-card {
+                padding: 1.3rem 1.2rem;
+            }
+
+            .faq-section h3 {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+
+    <!-- 导航 -->
+    <nav class="nav">
+        <span class="nav-brand">爱游戏体育 · 导航</span>
+        <div class="nav-links">
+            <a href="#intro">介绍</a>
+            <a href="#scenes">场景</a>
+            <a href="#faq">说明</a>
+        </div>
+    </nav>
+
+    <!-- hero 介绍 -->
+    <section class="hero" id="intro">
+        <h1>再次访问，持续关注</h1>
+        <p>
+            对于经常浏览体育资讯与赛事动态的用户而言，一个稳定、清晰的信息入口能显著提升获取效率。
+            <a href="https://m-beta-aiyouxi.com">爱游戏体育</a> 作为聚合体育内容与互动社区的轻量平台，其页面结构简洁，适合作为日常参考与收藏站点。
+        </p>
+        <p>
+            若你此前曾访问过该站，再次打开时可能会注意到内容模块的微调与赛事信息的更新。这种渐进式变化有助于维持阅读的连贯性，同时保持信息的时效性。
+        </p>
+    </section>
+
+    <!-- 三个场景模块 -->
+    <div class="scenes" id="scenes">
+        <div class="scene-card">
+            <h2>场景一 · 收藏夹中的固定锚点</h2>
+            <p>
+                将某个体育信息站加入浏览器收藏夹或书签栏，是许多深度用户的习惯。当收藏的页面在数月后依然保持稳定的浏览体验与内容结构，用户的信任感会自然累积。
+            </p>
+            <p>
+                <a href="https://m-beta-aiyouxi.com">爱游戏体育</a> 的页面布局长期维持窄版式中轴与清晰层级，减少了重新适应的时间成本。对于需要快速查阅赛事列表或社区讨论的用户而言，这是一种低认知负担的访问方式。
+            </p>
+            <div class="note">再次访问时，可留意首页推荐模块的轮换节奏——通常每 6–8 小时刷新一次热门内容。</div>
+        </div>
+
+        <div class="scene-card">
+            <h2>场景二 · 跨设备持续阅读</h2>
+            <p>
+                许多用户会在手机端初次浏览，之后在桌面端继续阅读。若页面在不同屏幕尺寸下均保持窄正文、大间距的排版，阅读体验的一致性会明显提升。
+            </p>
+            <p>
+                该站点在响应式设计上采用了统一的字体层级与留白策略，从移动浏览器切换到平板或笔记本时，正文宽度自动限制在 700–740px 范围，避免行过长或过短。对于跟踪系列报道或专题的用户，这种一致性尤其重要。
+            </p>
+            <div class="note">建议在浏览器中为该站点建立独立标签页组，便于跨设备同步阅读进度。</div>
+        </div>
+
+        <div class="scene-card">
+            <h2>场景三 · 信息沉淀与回顾</h2>
+            <p>
+                体育类信息具有明显的时效性，但部分深度分析、赛季回顾或规则科普内容值得反复查阅。当站点采用清晰的大标题层级与充足段间距时，用户可通过关键词快速定位历史内容。
+            </p>
+            <p>
+                <a href="https://m-beta-aiyouxi.com">爱游戏体育</a> 在文章页内使用了明确的 h1–h3 标题层级，且正文与卡片之间保留 2rem 以上的垂直间距。这种信息架构适合做内容摘录或笔记，也便于在二次访问时快速跳转至感兴趣的部分。
+            </p>
+            <div class="note">若想系统梳理某类赛事信息，可利用浏览器阅读模式配合站点内搜索，效率更高。</div>
+        </div>
+    </div>
+
+    <!-- 常见说明 (FAQ 摘要) -->
+    <section class="faq-section" id="faq">
+        <h3>常见说明 · 站点使用备忘</h3>
+
+        <div class="faq-item">
+            <strong>Q：为什么再次访问时首页内容与上次不同？</strong>
+            <p>体育类站点通常根据赛事日程与社区活跃度调整首页模块排序。热门讨论、最新比分或赛前前瞻会优先展示，属于动态更新机制，并非页面结构变动。</p>
+        </div>
+
+        <div class="faq-item">
+            <strong>Q：收藏该站点后，链接失效或跳转异常怎么办？</strong>
+            <p>请确保收藏的是 <a href="https://m-beta-aiyouxi.com">爱游戏体育</a> 的根域名。部分移动浏览器在保存书签时可能自动附加参数，建议手动复制纯净链接。</p>
+        </div>
+
+        <div class="faq-item">
+            <strong>Q：页面文字大小或间距是否可调？</strong>
+            <p>站点采用相对单位与视口适配，你可以通过浏览器缩放或阅读模式调整。桌面端建议保持 100% 缩放，以获得设计预期的留白节奏。</p>
+        </div>
+
+        <div class="faq-item">
+            <strong>Q：想关注某一特定赛事的深度内容，如何高效获取？</strong>
+            <p>利用站内分类或日期归档是一种方式。同时，持续关注首页「热门专题」区域，通常汇集了编辑精选的长文与复盘内容，适合系统性阅读。</p>
+        </div>
+    </section>
+
+    <!-- 尾部 -->
+    <div class="footer-note">
+        <span>信息入口 · <a href="https://m-beta-aiyouxi.com">爱游戏体育</a></span>
+    </div>
+</div>
+</body>
+</html>
