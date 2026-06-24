@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>爱游戏 · 故事从识别开始</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #fbf7f0;
+      font-family: 'Segoe UI', 'PingFang SC', Roboto, system-ui, -apple-system, sans-serif;
+      color: #2e2b27;
+      line-height: 1.7;
+      padding: 2rem 1.2rem;
+    }
+
+    .page-wrap {
+      max-width: 780px;
+      margin: 0 auto;
+      background: rgba(255, 252, 246, 0.7);
+      border-radius: 28px;
+      padding: 2.6rem 2rem 3rem;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04), 0 2px 4px rgba(0, 0, 0, 0.02);
+      backdrop-filter: blur(2px);
+    }
+
+    /* 开场短句 */
+    .opening {
+      font-size: 1.15rem;
+      letter-spacing: 0.02em;
+      color: #5b4e44;
+      border-left: 4px solid #ceb59a;
+      padding-left: 1.2rem;
+      margin-bottom: 2rem;
+      font-style: normal;
+      font-weight: 400;
+    }
+
+    .opening span {
+      display: inline-block;
+      background: #ece3d8;
+      padding: 0.1rem 0.6rem;
+      border-radius: 20px;
+      font-weight: 500;
+      color: #4a3f37;
+    }
+
+    h1 {
+      font-size: 2rem;
+      font-weight: 450;
+      letter-spacing: 1px;
+      margin-bottom: 0.6rem;
+      color: #3d332c;
+      display: flex;
+      align-items: baseline;
+      gap: 0.4rem;
+      flex-wrap: wrap;
+    }
+
+    h1 small {
+      font-size: 1rem;
+      font-weight: 300;
+      color: #887a6c;
+      letter-spacing: 0.06em;
+    }
+
+    .subhead {
+      color: #6f6054;
+      margin-bottom: 2.4rem;
+      font-size: 1.05rem;
+      border-bottom: 1px dashed #d6cbbc;
+      padding-bottom: 1.2rem;
+    }
+
+    /* 承接段落 */
+    .story-block p {
+      margin-bottom: 1.5rem;
+    }
+
+    .story-block p:first-of-type {
+      margin-top: 0.4rem;
+    }
+
+    .story-block a {
+      color: #7a5d44;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px solid #c9b39f;
+      transition: border-color 0.2s, color 0.2s;
+      padding: 0 1px;
+    }
+
+    .story-block a:hover {
+      color: #4d382a;
+      border-bottom-color: #6f523b;
+    }
+
+    /* 引用块 / 提示框 */
+    .insight-box {
+      background: #f2ede6;
+      border-radius: 20px;
+      padding: 1.4rem 1.8rem;
+      margin: 2rem 0 2.2rem;
+      border: 1px solid #e2d6ca;
+      box-shadow: inset 0 1px 3px rgba(255, 248, 238, 0.8);
+    }
+
+    .insight-box .box-label {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #927f6d;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+
+    .insight-box p {
+      margin-bottom: 0.3rem;
+      color: #423a33;
+    }
+
+    /* 特点列表 — 更接近文章里的要点 */
+    .feature-list {
+      list-style: none;
+      margin: 2rem 0 2.4rem;
+      padding: 0;
+    }
+
+    .feature-list li {
+      position: relative;
+      padding: 0.8rem 0 0.8rem 2.2rem;
+      border-bottom: 1px solid #ece1d5;
+      font-size: 0.98rem;
+    }
+
+    .feature-list li:last-child {
+      border-bottom: none;
+    }
+
+    .feature-list li::before {
+      content: "·";
+      position: absolute;
+      left: 0.5rem;
+      top: 0.8rem;
+      color: #b19578;
+      font-weight: 700;
+      font-size: 1.6rem;
+      line-height: 1;
+    }
+
+    .feature-list li strong {
+      font-weight: 500;
+      color: #4d3b2c;
+      margin-right: 0.2rem;
+    }
+
+    /* FAQ 摘要（minimal） */
+    .faq-mini {
+      background: #f9f4ed;
+      border-radius: 18px;
+      padding: 1.2rem 1.6rem;
+      margin: 2rem 0 1.6rem;
+    }
+
+    .faq-mini dt {
+      font-weight: 500;
+      color: #57493e;
+      margin-bottom: 0.25rem;
+      font-size: 0.95rem;
+    }
+
+    .faq-mini dd {
+      margin-left: 0.6rem;
+      margin-bottom: 1rem;
+      color: #5e5348;
+      font-size: 0.92rem;
+      border-left: 2px solid #dccfc1;
+      padding-left: 0.8rem;
+    }
+
+    .faq-mini dd:last-child {
+      margin-bottom: 0.1rem;
+    }
+
+    /* 温和结尾 */
+    .gentle-footer {
+      margin-top: 2.8rem;
+      padding-top: 1.6rem;
+      border-top: 1px solid #dbcebe;
+      font-size: 0.95rem;
+      color: #6a5e53;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .gentle-footer .site-tag {
+      background: #e2d7cb;
+      padding: 0.1rem 1rem;
+      border-radius: 40px;
+      font-size: 0.85rem;
+      color: #4b3f36;
+    }
+
+    .gentle-footer a {
+      color: #6a5a48;
+      text-decoration: none;
+      border-bottom: 1px solid #cbbaa9;
+    }
+
+    .gentle-footer a:hover {
+      border-bottom-color: #7d644c;
+    }
+
+    /* 响应式 */
+    @media (max-width: 520px) {
+      body {
+        padding: 1rem 0.8rem;
+      }
+      .page-wrap {
+        padding: 1.8rem 1.2rem 2rem;
+      }
+      h1 {
+        font-size: 1.6rem;
+      }
+      .opening {
+        font-size: 1rem;
+        padding-left: 0.9rem;
+      }
+      .insight-box {
+        padding: 1rem 1.2rem;
+      }
+      .feature-list li {
+        padding-left: 1.6rem;
+        font-size: 0.92rem;
+      }
+      .feature-list li::before {
+        left: 0.2rem;
+        font-size: 1.3rem;
+      }
+      .gentle-footer {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.6rem;
+      }
+    }
+
+    @media (max-width: 400px) {
+      .page-wrap {
+        padding: 1rem 0.8rem;
+      }
+      h1 small {
+        display: block;
+        margin-top: 0.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-wrap">
+    <!-- 开场短句 -->
+    <div class="opening">
+      <span>你打开这个页面的原因</span> —— 想快速弄明白这网站到底做什么。
+    </div>
+
+    <h1>
+      爱游戏
+      <small>· 从名字开始感受</small>
+    </h1>
+    <div class="subhead">一个可以让你放松下来、去发现游戏乐趣的地方</div>
+
+    <!-- 叙述式正文 -->
+    <div class="story-block">
+      <p>
+        先抛开那些复杂的功能列表。你看到「<a href="https://m-main-igame.com">爱游戏</a>」三个字，心里大概已经猜到一半：这里和游戏有关。和那种声光电炸裂的入口不同，这个站点更接近一个安静的角落——你不需要注册、不用填表，甚至不用急着做任何决定。它把游戏当作一种日常的陪伴来呈现。
+      </p>
+      <p>
+        我最初找到<a href="https://m-main-igame.com">爱游戏</a>的时候，其实和你的心态差不多：就想知道这地方靠不靠谱、有没有我感兴趣的内容。结果发现它并没有铺天盖地的弹窗，也没有夸张的标语。页面结构很干净，像一位朋友随手递过来的游戏手账。
+      </p>
+    </div>
+
+    <!-- 引用块 / 提示框 -->
+    <div class="insight-box">
+      <span class="box-label">💡 一点观察</span>
+      <p>很多游戏站点总想把你留在首页，用各种按钮和闪烁的banner拖住你。但<a href="https://m-main-igame.com">爱游戏</a>给我的第一印象恰恰相反——它更希望你直接去体验内容，而不是在导航里绕路。这种克制的设计，反而让人觉得可靠。</p>
+    </div>
+
+    <!-- 特点列表（文章式要点） -->
+    <ul class="feature-list">
+      <li><strong>· 轻导航</strong> —— 没有密密麻麻的菜单，你看到的几乎都是与游戏直接相关的入口。</li>
+      <li><strong>· 无门槛浏览</strong> —— 不需要登录就能翻看大部分内容，先感受再决定。</li>
+      <li><strong>· 风格统一</strong> —— 从配色到字体都偏柔和，不管白天还是夜里打开都不刺眼。</li>
+      <li><strong>· 更新平实</strong> —— 不会每天轰炸式推送，但每次出现的新内容都经过挑选。</li>
+    </ul>
+
+    <!-- 场景短述（承接叙述） -->
+    <p style="margin: 1.6rem 0 0.8rem; font-weight: 400;">
+      你可以把它当作一个游戏生活的入口：下班后、周末午后、或者只是等一杯咖啡的间隙，点开<a href="https://m-main-igame.com">爱游戏</a>，看看有没有让人眼前一亮的推荐。没有压力，也没有KPI。
+    </p>
+
+    <!-- FAQ 摘要片段（很克制，不啰嗦） -->
+    <dl class="faq-mini">
+      <dt>需要下载客户端吗？</dt>
+      <dd>绝大多数内容在浏览器里就能直接体验，不需要额外安装软件。</dd>
+      <dt>内容偏向什么类型？</dt>
+      <dd>以轻松、叙事和创意类为主，也有部分经典重温和独立作品介绍。</dd>
+      <dt>适合完全没接触过游戏的人吗？</dt>
+      <dd>当然。页面语言很生活化，没有硬核术语，哪怕你只是想了解游戏文化也能看进去。</dd>
+    </dl>
+
+    <!-- 温和结尾 -->
+    <div class="gentle-footer">
+      <span>慢慢看，不着急。</span>
+      <span class="site-tag">
+        <a href="https://m-main-igame.com">爱游戏</a> · 从这里开始
+      </span>
+    </div>
+  </div>
+</body>
+</html>
